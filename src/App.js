@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import Machine from "./Machine";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  getChoices = () => {
+    const randomChoice = () => {
+      return Math.ceil(Math.random() * 3).toString();
+    };
+    return [randomChoice(), randomChoice(), randomChoice()];
+  };
+  render() {
+    return (
+      <div>
+        <Machine choices={() => this.getChoices()} />
+        <Machine choices={() => this.getChoices()} />
+        <Machine choices={() => this.getChoices()} />
+        <form>
+          <button type="submit">play again</button>
+        </form>
+      </div>
+    );
+  }
 }
 
 export default App;
